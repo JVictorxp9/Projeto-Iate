@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxo - Mensagens</title>
+    <link rel="shortcut icon" href="images/barco2.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/default.css" />
+    <style>
+      .mensagens-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      .mensagens-container h2 {
+        color: var(--darkblue);
+        font: italic 600 1.6em var(--pagefont);
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .mensagens-container p {
+        font-size: 1em;
+        font-family: var(--pagefont);
+        line-height: 1.6;
+      }
+
+    
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-family: var(--pagefont);
+      }
+
+      th, td {
+        border: 1px solid var(--darkblue);
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background-color: var(--lightblue);
+        color: white;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tbody tr:hover {
+        background-color: #e6f7ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div id="title">
+          <img src="images/barco1.png" alt="ícone de barco" />
+          <div class="headtitle">
+            <h1>Luxo</h1>
+            <h2>Aluguel de iates</h2>
+          </div>
+        </div>
+
+        <nav>
+          <ul class="navmenu">
+            <li><a href="index.html">Página inicial</a></li>
+            <li><a href="aluguel.html">Aluguel de iates</a></li>
+            <li><a href="destinos.html">Destinos</a></li>
+            <li><a href="tripulacao.html">Tripulação</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="admin.html">Admin</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <div class="pagtitle">
+          <div class="bgtitle"></div>
+          <h2>Mensagens Recebidas</h2>
+        </div>
+
+        <div class="mensagens-container">
+          <h2>Bem-vindo, administrador!</h2>
+          <p>Aqui você poderá visualizar as mensagens enviadas pelos usuários através do formulário de contato.</p>
+
+        
+          <table id="mensagensTable">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Assunto</th>
+                <th>Mensagem</th>
+                <th>Data</th>
+              </tr>
+            </thead>
+            <tbody>
+             
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>© 2023 por Luxo aluguel de iates</p>
+    </footer>
+
+    <script>
+     
+      function obterMensagens() {
+        return [
+          {
+            nome: "Lady Gaga",
+            email: "Lady@email.com",
+            assunto: "Consulta sobre aluguel",
+            mensagem: "Gostaria de saber os preços para o mês de julho.",
+            data: "2025-06-01",
+          },
+          {
+            nome: "Juliette",
+            email: "Juliette@email.com",
+            assunto: "Reserva de iate",
+            mensagem: "Quero reservar para o dia 10/06.",
+            data: "2025-08-01",
+          },
+          {
+            nome: "Lana Del Rey",
+            email: "Lana@email.com",
+            assunto: "Dúvidas gerais",
+            mensagem: "O que está incluso no aluguel?",
+            data: "2025-09-01",
+          },
+        ];
+      }
+
+      function preencherTabelaMensagens() {
+        const mensagens = obterMensagens();
+        const tbody = document.querySelector("#mensagensTable tbody");
+
+        tbody.innerHTML = "";
+
+        if (mensagens.length === 0) {
+          const tr = document.createElement("tr");
+          const td = document.createElement("td");
+          td.colSpan = 5;
+          td.style.textAlign = "center";
+          td.textContent = "Nenhuma mensagem recebida.";
+          tr.appendChild(td);
+          tbody.appendChild(tr);
+          return;
+        }
+
+        mensagens.forEach((msg) => {
+          const tr = document.createElement("tr");
+
+          const tdNome = document.createElement("td");
+          tdNome.textContent = msg.nome || "";
+          tr.appendChild(tdNome);
+
+          const tdEmail = document.createElement("td");
+          tdEmail.textContent = msg.email || "";
+          tr.appendChild(tdEmail);
+
+          const tdAssunto = document.createElement("td");
+          tdAssunto.textContent = msg.assunto || "";
+          tr.appendChild(tdAssunto);
+
+          const tdMensagem = document.createElement("td");
+          tdMensagem.textContent = msg.mensagem || "";
+          tr.appendChild(tdMensagem);
+
+          const tdData = document.createElement("td");
+          tdData.textContent = msg.data || "";
+          tr.appendChild(tdData);
+
+          tbody.appendChild(tr);
+        });
+      }
+
+      window.onload = preencherTabelaMensagens;
+    </script>
+  </body>
+</html>
